@@ -1,2 +1,25 @@
-<h1>Upcoming Events</h1>
-<p>Check out what's happening soon!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {title}) %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <main class="container">
+        <h1>All Upcoming Events</h1>
+        
+        <div class="events-grid">
+            <% events.forEach(event => { %>
+                <div class="event-card">
+                    <img src="/images/<%= event.image %>" alt="<%= event.title %>">
+                    <h3><%= event.title %></h3>
+                    <p><%= event.date %> | <%= event.location %></p>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

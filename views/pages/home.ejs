@@ -1,1 +1,27 @@
-<h1>Welcome to the Community Portal</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head', {title}) %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    
+    <main class="container">
+        <h1>Welcome to Our Community Portal</h1>
+        <p>Join us for exciting events and connect with like-minded people!</p>
+        
+        <h2>Upcoming Events</h2>
+        <div class="events-grid">
+            <% upcomingEvents.forEach(event => { %>
+                <div class="event-card">
+                    <img src="/images/<%= event.image %>" alt="<%= event.title %>">
+                    <h3><%= event.title %></h3>
+                    <p><%= event.date %> | <%= event.location %></p>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
