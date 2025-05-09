@@ -8,8 +8,11 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
+    "compression": "^1.8.0",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
     "nodemon": "^3.0.2"
   }
 }

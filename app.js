@@ -1,67 +1,84 @@
-// routes/pageRoutes.js
-
+// app.js - Main server setup
 const express = require('express');
-const router = express.Router();
+const path = require('path');
+const pageRoutes = require('./routes/pageRoutes');
 
-// Data storage for contact form submissions (in-memory array)
-let submissions = [];
+// Basic security and performance tools
+const helmet = require('helmet');
+const compression = require('compression');
 
-// Sample data arrays (move to separate file if preferred)
-const teamMembers = [
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Set up app basics
+app.use(helmet()); // Security headers
+app.use(compression()); // Faster page loads
+app.use(express.urlencoded({ extended: true })); // Form data handling
+
+// Where to find website files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set up templates
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Sample data for pages
+app.locals.teamMembers = [
   { name: 'John', role: 'Developer' },
   { name: 'Sarah', role: 'Designer' }
 ];
 
-// Home Route
-router.get('/', (req, res) => {
-  res.render('pages/home', {
-    title: 'Community Portal - Home',
-    upcomingEvents: events.slice(0, 2) // Show 2 upcoming events on home
+app.locals.events = [
+  { 
+    title: 'Tech Conference', 
+    date: '2025-06-01', 
+    location: 'Virtual', 
+    image: 'tech.jpg' 
+  },
+  { 
+    title: 'Art Exhibition', 
+    date: '2025-07-15', 
+    location: 'Gallery', 
+    image: 'art.jpg' 
+  }
+];
+
+// Connect page routes
+app.use('/', pageRoutes);
+
+// Handle missing pages
+app.use((req, res) => {
+  res.status(404).render('pages/404', {
+    title: 'Page Not Found',
+    message: "This page doesn't exist"
   });
 });
 
-// About Route with team data
-router.get('/about', (req, res) => {
-  res.render('pages/about', {
-    title: 'About Our Team',
-    team: teamMembers
+// Handle server errors
+app.use((err, req, res, next) => {
+  console.error('Server error:', err);
+  res.status(500).render('pages/error', {
+    title: 'Something Went Wrong',
+    message: 'We\'re working on fixing this'
   });
 });
 
-// Events Route with all events
-router.get('/events', (req, res) => {
-  res.render('pages/events', {
-    title: 'Upcoming Events',
-    events: events
-  });
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running:`);
+  console.log(`- Local: http://localhost:${port}`);
+  console.log(`- Network: http://${getLocalIP()}:${port}`);
 });
 
-// Contact Form Handling
-router.route('/contact')
-  .get((req, res) => {
-    res.render('pages/contact', {
-      title: 'Contact Us',
-      formData: req.query.formData || {} // For error handling/repopulation
-    });
-  })
-  .post((req, res) => {
-    const { name, email, message } = req.body;
-    
-    // Basic validation
-    if (!name || !email || !message) {
-      return res.redirect('/contact?formData=' + encodeURIComponent(JSON.stringify(req.body)));
+// Get the computer's network address
+function getLocalIP() {
+  const interfaces = require('os').networkInterfaces();
+  for (const name in interfaces) {
+    for (const iface of interfaces[name]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        return iface.address;
+      }
     }
-
-    submissions.push({ name, email, message, date: new Date() });
-    res.redirect('/thankyou');
-  });
-
-// Thank You Route
-router.get('/thankyou', (req, res) => {
-  res.render('pages/thankyou', {
-    title: 'Thank You!',
-    submission: submissions[submissions.length - 1] // Show latest submission
-  });
-});
-
-module.exports = router;
+  }
+  return 'localhost';
+}
