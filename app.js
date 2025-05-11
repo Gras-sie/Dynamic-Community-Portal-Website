@@ -33,13 +33,13 @@ app.locals.events = [
     title: 'Tech Conference', 
     date: '2025-06-01', 
     location: 'Virtual', 
-    image: 'tech.jpg' 
+    image: 'Tech.jpg' 
   },
   { 
     title: 'Art Exhibition', 
     date: '2025-07-15', 
     location: 'Gallery', 
-    image: 'art.jpg' 
+    image: 'Art.jpg' 
   }
 ];
 
@@ -82,3 +82,4 @@ function getLocalIP() {
   }
   return 'localhost';
 }
+

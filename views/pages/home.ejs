@@ -5,11 +5,11 @@
 </head>
 <body>
     <%- include('../partials/header') %>
-    
+    <section class="hero">
     <main class="container">
         <h1>Welcome to Our Community Portal</h1>
         <p>Join us for exciting events and connect with like-minded people!</p>
-        
+    </section>
         <h2>Upcoming Events</h2>
         <div class="events-grid">
             <% upcomingEvents.forEach(event => { %>
@@ -20,8 +20,9 @@
                 </div>
             <% }); %>
         </div>
+        <%- include('../partials/footer') %>
     </main>
 
-    <%- include('../partials/footer') %>
+    
 </body>
 </html>
