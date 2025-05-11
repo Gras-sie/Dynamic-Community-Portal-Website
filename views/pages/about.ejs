@@ -12,7 +12,8 @@
         <div class="team-grid">
             <% team.forEach(member => { %>
                 <div class="team-card">
-                    <h3><%= member.name %></h3>
+                    <h2><%= member.name %></h2>
+                    <p>Student Number: <%= member.studentNum %></p>                    
                     <p><%= member.role %></p>
                 </div>
             <% }); %>

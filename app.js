@@ -24,22 +24,54 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Sample data for pages
 app.locals.teamMembers = [
-  { name: 'John', role: 'Developer' },
-  { name: 'Sarah', role: 'Designer' }
+  { name: 'Marius Francois Grassman', role: 'Team Lead', studentNum: '600132'  },// Add student number implimentation and look into adding images
+  { name: 'Noah Blaauw', role: 'Developer', studentNum: '601195' },
+  { name: 'Viljoen Steenkamp', role: 'Designer', studentNum: '601282' },
+  { name: 'Bianca Long', role: 'Developer', studentNum: '600476' }
 ];
 
 app.locals.events = [
+  {
+    title: 'Mothers Day Brunch',
+    date: '2025-05-11',
+    location: 'Community Park',
+    image: 'mom.jpg'
+  },
   { 
     title: 'Tech Conference', 
-    date: '2025-06-01', 
+    date: '2025-05-14', 
     location: 'Virtual', 
-    image: 'Tech.jpg' 
+    image: 'tech.jpeg' 
+  },
+  {
+    title: 'Tekkie Town Charaty Golf Day',
+    date: '2025-05-17',
+    location: 'Kingswood Golf Estate',
+    image: 'golf.png'
+  },
+  {
+    title: 'Africa Day Festival',
+    date: '2025-05-23',
+    location: 'Community Center',
+    image: 'festival.jpg'
+  },
+  { 
+    title: 'Forest Marathon', 
+    date: '2025-06-03', 
+    location: 'Gallery', 
+    image: 'forest.jpg' 
+  },
+  { 
+    title: 'Pink Walk – Breast Cancer Awareness', 
+    date: '2025-06-21', 
+    location: 'Gallery', 
+    image: 'breast.jpg' 
   },
   { 
     title: 'Art Exhibition', 
     date: '2025-07-15', 
     location: 'Gallery', 
-    image: 'Art.jpg' 
+    image: 'art.jpeg' 
   }
 ];
 
