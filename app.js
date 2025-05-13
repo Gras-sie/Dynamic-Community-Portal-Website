@@ -1,106 +1,34 @@
-// app.js - Main server setup
+// Main website file - handles all the basic setup
 const express = require('express');
 const path = require('path');
-const pageRoutes = require('./routes/pageRoutes');
-
-// Basic security and performance tools
 const helmet = require('helmet');
 const compression = require('compression');
+const connectDB = require('./config/database');
+const pageRoutes = require('./routes/pageRoutes');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Set up app basics
-app.use(helmet()); // Security headers
-app.use(compression()); // Faster page loads
-app.use(express.urlencoded({ extended: true })); // Form data handling
+// Connect to Database
+connectDB();
 
-// Where to find website files
-app.use(express.static(path.join(__dirname, 'public')));
+// Middleware
+app.use(helmet()); // Makes the site more secure
+app.use(compression()); // Makes pages load faster
+app.use(express.urlencoded({ extended: true })); // Helps with forms
+app.use(express.static(path.join(__dirname, 'public'))); // Where we keep our images and CSS
 
-// Set up templates
+// Where to find our web pages
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Sample data for pages
+// Team data
 app.locals.teamMembers = [
   { name: 'Marius Francois Grassman', role: 'Team Lead', studentNum: '600132'  },// Add student number implimentation and look into adding images
   { name: 'Noah Blaauw', role: 'Developer', studentNum: '601195' },
   { name: 'Viljoen Steenkamp', role: 'Designer', studentNum: '601282' },
   { name: 'Bianca Long', role: 'Developer', studentNum: '600476' }
-];
-
-app.locals.events = [
-  {
-    title: 'Mothers Day Brunch',
-    date: '2025-05-11',
-    location: 'Community Park',
-    image: 'mom.jpg'
-  },
-  { 
-    title: 'Tech Conference', 
-    date: '2025-05-14', 
-    location: 'Virtual', 
-    image: 'tech.jpeg' 
-  },
-  {
-    title: 'Tekkie Town Charaty Golf Day',
-    date: '2025-05-17',
-    location: 'Kingswood Golf Estate',
-    image: 'golf.png'
-  },
-  {
-    title: 'Africa Day Festival',
-    date: '2025-05-23',
-    location: 'Community Center',
-    image: 'festival.jpg'
-  },
-  { 
-    title: 'Forest Marathon', 
-    date: '2025-06-03', 
-    location: 'Gallery', 
-    image: 'forest.jpg' 
-  },
-  { 
-    title: 'Pink Walk – Breast Cancer Awareness', 
-    date: '2025-06-21', 
-    location: 'Gallery', 
-    image: 'breast.jpg' 
-  },
-  { 
-    title: 'Art Exhibition', 
-    date: '2025-07-15', 
-    location: 'Gallery', 
-    image: 'art.jpeg' 
-  }
-];
-
-// Add past events data
-app.locals.pastEvents = [
-  {
-    title: "Summer Festival 2023",
-    date: "December 15, 2023",
-    location: "Community Park",
-    description: "A wonderful celebration featuring local artists and food vendors. Over 1000 community members gathered to enjoy live music, local cuisine, and family-friendly activities.",
-    attendees: 1000,
-    highlights: "Live music performances, local food vendors, family activities"
-  },
-  {
-    title: "Tech Conference 2023",
-    date: "November 20, 2023",
-    location: "Convention Center",
-    description: "Industry experts shared insights on emerging technologies. The conference featured 12 speakers and hosted workshops on AI, blockchain, and cybersecurity.",
-    attendees: 500,
-    highlights: "Expert speakers, interactive workshops, networking sessions"
-  },
-  {
-    title: "Charity Marathon",
-    date: "October 5, 2023",
-    location: "City Center",
-    description: "Annual marathon that raised funds for local charities. We raised over R100,000 for local children's hospitals with 300 participants.",
-    attendees: 300,
-    highlights: "R100,000 raised, community participation, health awareness"
-  }
 ];
 
 // Connect page routes
@@ -118,28 +46,15 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error('Server error:', err);
   res.status(500).render('pages/error', {
-    title: 'Something Went Wrong',
+    title: 'Error',
     message: 'We\'re working on fixing this'
   });
 });
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running:`);
-  console.log(`- Local: http://localhost:${port}`);
-  console.log(`- Network: http://${getLocalIP()}:${port}`);
+  console.log(`Server running at:`);
+  console.log(`- Local:   http://localhost:${port}`);
+  console.log(`- Network: http://${require('os').networkInterfaces()['Ethernet']?.[0]?.address || 'localhost'}:${port}`);
 });
-
-// Get the computer's network address
-function getLocalIP() {
-  const interfaces = require('os').networkInterfaces();
-  for (const name in interfaces) {
-    for (const iface of interfaces[name]) {
-      if (iface.family === 'IPv4' && !iface.internal) {
-        return iface.address;
-      }
-    }
-  }
-  return 'localhost';
-}
 

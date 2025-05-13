@@ -1,14 +1,7 @@
 # Community Portal Website
 
-A dynamic community portal built with Node.js and EJS templating. Features event listings, team profiles, and a contact form.
-
-## 🚀 Technologies Used
-
-- **Backend**: Node.js (v18+), Express.js (v4+)
-- **Templating**: EJS (v3+)
-- **Security**: Helmet, Express Rate Limit
-- **Performance**: Compression
-- **Frontend**: Vanilla + Bootstrap CSS
+Hey! This is our community website project. It shows upcoming events and has info about our team. 
+You can see events that are coming up, check out past events, and even send us messages through a contact form.
 
 ## 👥 Team Members and Roles
 
@@ -20,28 +13,37 @@ A dynamic community portal built with Node.js and EJS templating. Features event
 | Noah Blaauw             | Data Manager            | Sample data, validation, testing              |
 
 
-## 🛠 Setup Instructions
+## 🚀 Getting Started
 
-1. Clone the repository:
-    ```bash
-    git clone [repository-url]
-    ```
+You'll need:
+- Node.js
+- MongoDB
+- Git
 
-2. Install dependencies:
-    ```bash
-    npm install helmet express-rate-limit compression
-    ```
+Quick setup:
+```bash
+# Get the code and install stuff
+git clone [repository-url]
+cd Dynamic-Community_Portal_Website
+npm install
 
-3. Start development server:
-    ```bash
-    npm run dev
-    ```
+# Set up MongoDB connection
+echo "MONGO_URI=mongodb://localhost:27017/community_portal" > .env
 
-4. Visit in your browser:
-    ```
-    http://localhost:3000
-    ```
+# Add sample events to database
+node scripts/seedDB.js
+
+# Run the website
+npm start
+```
+
+That's it! Go to http://localhost:3000 to see the site.
+
+## 🔍 What's Inside
+- Shows upcoming and past events
+- Team member info
+- Contact form
+- Looks good on phones too
 
 ---
-
-*Project submitted for WPR37(8)1 - Web Programming Course*
+*For our WPR381 Project*
