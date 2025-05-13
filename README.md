@@ -12,13 +12,13 @@ A dynamic community portal built with Node.js and EJS templating. Features event
 
 ## 👥 Team Members and Roles
 
-| Name          | Role               | Responsibilities                |
-|---------------|--------------------|----------------------------------|
-| [Your Name]   | Team Lead          | Project coordination, backend   |
-| [Member 2]    | Frontend Developer | EJS templates, CSS styling      |
-| [Member 3]    | Backend Developer  | Routes, form handling           |
-| [Member 4]    | Data Manager       | Sample data, validation         |
-| [Member 5]    | QA Specialist      | Testing, error handling         |
+| Name                   | Role                    | Responsibilities                              |
+|------------------------|-------------------------|-----------------------------------------------|
+| Bianca Long            | Team Lead               | Project coordination, error handling          |
+| Viljoen Steenkamp      | Frontend Developer      | Frontend, EJS templates, CSS styling          |
+| Marius Fancois Grassman| Backend Developer       | Backend, Routes, form handling                |
+| Noah Blaauw            | Data Manager            | Sample data, validation, testing              |
+
 
 ## 🛠 Setup Instructions
 
