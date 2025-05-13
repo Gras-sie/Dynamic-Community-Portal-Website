@@ -6,29 +6,125 @@
 <body>
     <%- include('../partials/header') %>
     
-    <main class="container">
-        <h1>Contact Us</h1>
-        
-        <form action="/contact" method="POST">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="<%= formData.name || '' %>" required>
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="section-heading">Contact Us</h1>
+                
+                <div class="card shadow-sm mb-5">
+                    <div class="card-body p-4">
+                        <form action="/contact" method="POST" class="needs-validation" novalidate>
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="name" name="name" value="<%= formData.name || '' %>" placeholder="Enter your name" required>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide your name.
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email" value="<%= formData.email || '' %>" placeholder="Enter your email" required>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email address.
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="How can we help you?" required><%= formData.message || '' %></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter your message.
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary py-2">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="row g-4 text-center">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <i class="fas fa-map-marker-alt text-primary" style="font-size: 2rem;"></i>
+                                </div>
+                                <h5>Visit Us</h5>
+                                <p class="text-muted">123 Community St<br>Anytown, ST 12345</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <i class="fas fa-envelope text-primary" style="font-size: 2rem;"></i>
+                                </div>
+                                <h5>Email Us</h5>
+                                <p class="text-muted">info@communityportal.com<br>support@communityportal.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <i class="fas fa-phone text-primary" style="font-size: 2rem;"></i>
+                                </div>
+                                <h5>Call Us</h5>
+                                <p class="text-muted">+123 456 7890<br>Mon-Fri, 9am-5pm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="<%= formData.email || '' %>" required>
+        </div>
+    </div>
+    
+    <!-- Map Section (placeholder) -->
+    <div class="container-fluid px-0 mt-5">
+        <div class="bg-light py-5">
+            <div class="container">
+                <h3 class="text-center mb-4">Find Us</h3>
+                <div class="ratio ratio-21x9">
+                    <img src="/api/placeholder/1200/400" alt="Map placeholder" class="rounded shadow">
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required><%= formData.message || '' %></textarea>
-            </div>
-            
-            <button type="submit">Send Message</button>
-        </form>
-    </main>
+        </div>
+    </div>
 
     <%- include('../partials/footer') %>
+    
+    <!-- Form validation script -->
+    <script>
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
 </body>
 </html>

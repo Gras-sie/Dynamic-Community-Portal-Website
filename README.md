@@ -8,16 +8,16 @@ A dynamic community portal built with Node.js and EJS templating. Features event
 - **Templating**: EJS (v3+)
 - **Security**: Helmet, Express Rate Limit
 - **Performance**: Compression
-- **Frontend**: Vanilla CSS
+- **Frontend**: Vanilla + Bootstrap CSS
 
 ## 👥 Team Members and Roles
 
-| Name                   | Role                    | Responsibilities                              |
-|------------------------|-------------------------|-----------------------------------------------|
-| Bianca Long            | Team Lead               | Project coordination, error handling          |
-| Viljoen Steenkamp      | Frontend Developer      | Frontend, EJS templates, CSS styling          |
-| Marius Fancois Grassman| Backend Developer       | Backend, Routes, form handling                |
-| Noah Blaauw            | Data Manager            | Sample data, validation, testing              |
+| Name                    | Role                    | Responsibilities                              |
+|-------------------------|-------------------------|-----------------------------------------------|
+| Bianca Long             | Team Lead               | Project coordination, error handling          |
+| Viljoen Steenkamp       | Frontend Developer      | Frontend, EJS templates, CSS styling          |
+| Marius Francois Grassman| Backend Developer       | Backend, Routes, form handling                |
+| Noah Blaauw             | Data Manager            | Sample data, validation, testing              |
 
 
 ## 🛠 Setup Instructions

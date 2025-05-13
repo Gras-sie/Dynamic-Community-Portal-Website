@@ -6,19 +6,79 @@
 <body>
     <%- include('../partials/header') %>
     
-    <main class="container">
-        <h1>All Upcoming Events</h1>
+    <div class="container main-container">
+        <h1 class="section-heading">All Upcoming Events</h1>
         
-        <div class="events-grid">
+        <div class="row">
             <% events.forEach(event => { %>
-                <div class="event-card">
-                    <img src="/images/<%= event.image %>" alt="<%= event.title %>">
-                    <h3><%= event.title %></h3>
-                    <p><%= event.date %> | <%= event.location %></p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <img src="/images/<%= event.image %>" class="card-img-top" alt="<%= event.title %>">
+                        <div class="card-body">
+                            <span class="date-badge"><i class="far fa-calendar-alt me-1"></i><%= event.date %></span>
+                            <span class="location-badge"><i class="fas fa-map-marker-alt me-1"></i><%= event.location %></span>
+                            <h5 class="card-title"><%= event.title %></h5>
+                            <p class="card-text text-muted">Join us for this exciting event in our community.</p>
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#eventModal<%= events.indexOf(event) %>">
+                                Event Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal for each event -->
+                <div class="modal fade" id="eventModal<%= events.indexOf(event) %>" tabindex="-1" aria-labelledby="eventModalLabel<%= events.indexOf(event) %>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eventModalLabel<%= events.indexOf(event) %>"><%= event.title %></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="/images/<%= event.image %>" class="img-fluid rounded mb-3" alt="<%= event.title %>">
+                                <p><strong><i class="far fa-calendar-alt me-2"></i>Date:</strong> <%= event.date %></p>
+                                <p><strong><i class="fas fa-map-marker-alt me-2"></i>Location:</strong> <%= event.location %></p>
+                                <p>Join us for this exciting community event! More details will be provided closer to the date.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="/contact" class="btn btn-primary">Contact for More Info</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             <% }); %>
         </div>
-    </main>
+        
+        <div class="mt-5">
+            <h3 class="section-heading">Event Calendar</h3>
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-center mb-4">Check out our upcoming events schedule for the next few months.</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% events.forEach(event => { %>
+                                    <tr>
+                                        <td><%= event.title %></td>
+                                        <td><%= event.date %></td>
+                                        <td><%= event.location %></td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <%- include('../partials/footer') %>
 </body>

@@ -6,19 +6,101 @@
 <body>
     <%- include('../partials/header') %>
     
-    <main class="container">
-        <h1>About Our Team</h1>
+    <div class="container main-container">
+        <h1 class="section-heading">About Our Team</h1>
         
-        <div class="team-grid">
+        <div class="row mb-5">
+            <div class="col-lg-8">
+                <p class="lead">We are a dedicated team of students working together to create a platform that connects our community through events and shared experiences.</p>
+                <p>Our mission is to foster a sense of belonging and provide a digital space where community members can discover local events, connect with others, and stay informed about important happenings in the area.</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5><i class="fas fa-bullseye text-primary me-2"></i>Our Mission</h5>
+                        <p>To build stronger communities through shared experiences and events.</p>
+                        
+                        <h5 class="mt-3"><i class="fas fa-eye text-primary me-2"></i>Our Vision</h5>
+                        <p>A connected community where everyone feels welcome and informed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-heading">Meet The Team</h2>
+        
+        <div class="row">
             <% team.forEach(member => { %>
-                <div class="team-card">
-                    <h2><%= member.name %></h2>
-                    <p>Student Number: <%= member.studentNum %></p>                    
-                    <p><%= member.role %></p>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="bg-light rounded-circle mx-auto d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                                    <i class="fas fa-user text-primary" style="font-size: 2.5rem;"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title"><%= member.name %></h5>
+                            <span class="badge mb-2"><%= member.role %></span>
+                            <p class="card-text text-muted small">Student Number: <%= member.studentNum %></p>
+                            <div class="mt-3">
+                                <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-primary me-2"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-primary"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             <% }); %>
         </div>
-    </main>
+        
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card bg-light">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4">Our Development Process</h3>
+                        <div class="row">
+                            <div class="col-md-3 mb-3 mb-md-0">
+                                <div class="text-center">
+                                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-lightbulb text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <h5>Plan</h5>
+                                    <p class="small text-muted">Requirements gathering and project planning</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3 mb-md-0">
+                                <div class="text-center">
+                                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-pencil-alt text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <h5>Design</h5>
+                                    <p class="small text-muted">Creating wireframes and visual design</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3 mb-md-0">
+                                <div class="text-center">
+                                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-code text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <h5>Develop</h5>
+                                    <p class="small text-muted">Building the platform with best practices</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-rocket text-primary" style="font-size: 1.5rem;"></i>
+                                    </div>
+                                    <h5>Deploy</h5>
+                                    <p class="small text-muted">Launching and maintaining the site</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <%- include('../partials/footer') %>
 </body>
