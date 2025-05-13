@@ -75,6 +75,34 @@ app.locals.events = [
   }
 ];
 
+// Add past events data
+app.locals.pastEvents = [
+  {
+    title: "Summer Festival 2023",
+    date: "December 15, 2023",
+    location: "Community Park",
+    description: "A wonderful celebration featuring local artists and food vendors. Over 1000 community members gathered to enjoy live music, local cuisine, and family-friendly activities.",
+    attendees: 1000,
+    highlights: "Live music performances, local food vendors, family activities"
+  },
+  {
+    title: "Tech Conference 2023",
+    date: "November 20, 2023",
+    location: "Convention Center",
+    description: "Industry experts shared insights on emerging technologies. The conference featured 12 speakers and hosted workshops on AI, blockchain, and cybersecurity.",
+    attendees: 500,
+    highlights: "Expert speakers, interactive workshops, networking sessions"
+  },
+  {
+    title: "Charity Marathon",
+    date: "October 5, 2023",
+    location: "City Center",
+    description: "Annual marathon that raised funds for local charities. We raised over R100,000 for local children's hospitals with 300 participants.",
+    attendees: 300,
+    highlights: "R100,000 raised, community participation, health awareness"
+  }
+];
+
 // Connect page routes
 app.use('/', pageRoutes);
 

@@ -7,9 +7,12 @@ let submissions = [];
 
 // Home Route
 router.get('/', (req, res) => {
-  res.render('pages/home', {
-    title: 'Community Portal - Home',
-    upcomingEvents: req.app.locals.events.slice(0, 2)
+  const upcomingEvents = req.app.locals.events;
+  const pastEvents = req.app.locals.pastEvents;
+  res.render('pages/home', { 
+    title: 'Home',
+    upcomingEvents,
+    pastEvents
   });
 });
 
