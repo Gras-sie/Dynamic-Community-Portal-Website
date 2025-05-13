@@ -1,10 +1,16 @@
 # Dependency directories
 node_modules/
+jspm_packages/
+.pnp
+.pnp.js
 
 # Environment files
 .env
 .env.local
 .env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Log files
 npm-debug.log*
@@ -36,6 +42,9 @@ nodemon.json
 # Build directories
 /dist
 /build
+/out/
+/next/
+/storybook-static
 
 # Optional npm cache directory
 .npm
@@ -45,6 +54,8 @@ nodemon.json
 
 # Optional coverage directory
 coverage/
+.lcov
+.nyc_output
 
 # Debug log
 debug.log
@@ -55,3 +66,22 @@ debug.log
 
 # Optional local configuration
 config/local.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Misc
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
